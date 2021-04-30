@@ -7,6 +7,7 @@ using LinearAlgebra, Random
 using QuantEcon
 using Combinatorics
 using Parameters
+using Distributions
 
 # Optimization packages
 using MathOptInterface
@@ -70,6 +71,11 @@ include("support_enumeration.jl")
 include("util.jl")
 include("generators/Generators.jl")
 
+include("fictplay.jl")
+include("localint.jl")
+include("brd.jl")
+include("logitdyn.jl")
+
 export
     # Types
     Player, NormalFormGame,
@@ -102,6 +108,15 @@ export
     random_pure_actions, random_mixed_actions,
 
     # Support Enumeration
-    support_enumeration, support_enumeration_task
+    support_enumeration, support_enumeration_task,
+
+    # Learning algorithm
+    play!, play, time_series,
+    AbstractGain, DecreasingGain, ConstantGain,
+    AbstractFictitiousPlay, FictitiousPlay, StochasticFictitiousPlay,
+    AbstractRevision, SimultaneousRevision, AsynchronousRevision,
+    LocalInteraction,
+    AbstractBRD, BRD, KMR, SamplingBRD,
+    LogitDynamics
 
 end # module
