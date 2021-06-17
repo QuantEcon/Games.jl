@@ -62,5 +62,19 @@ using CDDLib
         end
     end
 
-end
+    #
+    # Test AS algorithm
+    #
+    @testset "Testing AS algorithm" begin
+        vertices = AS(rpd; tol=1e-9)
+        @test size(vertices) == (5, 2)
 
+        pts_sorted = [3.0 3.0;
+                      3.0 9.75;
+                      3.0 3.0;
+                      9.0 9.0;
+                      9.75 3.0]
+        @test all(sortrows(vertices) .≈ pts_sorted)
+    end
+
+end
